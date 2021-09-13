@@ -3,15 +3,18 @@ import Engine from "./Engine.js";
 import Display from "./Display.js";
 import Button from "./Button.js";
 import "./Calculator.css";
+import { itemService } from "./service.js";
 
 class Calculator extends React.Component {
+  
+  engine =  new Engine();
   constructor(props) {
     super(props);
 
     this.state = {
       display: "0",
       disable: false,
-      engine: new Engine(),
+    
     };
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleButtonDisable = this.handleButtonDisable.bind(this);
@@ -20,7 +23,7 @@ class Calculator extends React.Component {
   handleButtonClick(value)   {
     if(value !== null){
       this.setState({
-        display: this.state.engine.calculate(value),
+        display: this.state.itemService.calculate(value),
       });
     }
   
@@ -31,6 +34,16 @@ class Calculator extends React.Component {
       disable: true
     });
   };
+
+  componentDidMount(){
+    fetch(itemService.calculate).then((data) => {
+      //This should store the data to some arrray object ...
+      //if it's post call it should call the opration and pass the args numbers ..
+      this.setState({})
+    })
+  }
+
+
 
   render() {
     return (

@@ -1,4 +1,4 @@
-class Engine {
+ export default class Engine {
     constructor() {
       this.number = "";
   
